@@ -30,6 +30,15 @@ public class BaseDao {
 			e.printStackTrace();
 		}
 		// 3、关闭Connection释放资源
+		finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+		}
 	}
 
 }

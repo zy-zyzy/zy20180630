@@ -46,6 +46,15 @@ public class ProductDao extends BaseDao {
 			//e.printStackTrace();
 			throw new RuntimeException(e);
 		}
+		finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				throw new RuntimeException(e);
+			}
+		}
 	
 	}
 	
@@ -81,6 +90,15 @@ public class ProductDao extends BaseDao {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 			throw new RuntimeException(e);
+		}
+		finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				throw new RuntimeException(e);
+			}
 		}
 	}
 	
