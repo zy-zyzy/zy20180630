@@ -1,6 +1,8 @@
 package cn.yd.oa.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,14 +15,19 @@ import cn.yd.oa.service.ProductService;
 /**
  * Servlet implementation class ProductServlet
  */
-@WebServlet("/ProductServlet")
+//@WebServlet("/ProductServlet")
 public class ProductServlet extends HttpServlet {
  
 	private ProductService productService = new ProductService();
 	
 	//处理method=get的请求
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String keyword = request.getParameter("keyword");
+		ProductService productService = new ProductService();
+		ArrayList<Product> products = productService.queryByName(keyword);
+		for(Product tmProduct :products) {
+			System.out.println(tmProduct);
+		}
 	}
 
 	//处理method=post的请求
@@ -33,7 +40,8 @@ public class ProductServlet extends HttpServlet {
 		product.setRemark(request.getParameter("remark"));
 		//2、调用业务逻辑
 		productService.save(product);
-		//3、返回结果页面
+		//3、调整到查询页面，在java中所有的资源访问都要从工程名开始（query.jsp）
+		response.sendRedirect("/zy20180630/query.jsp");
 	}
 
 }
