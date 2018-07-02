@@ -22,12 +22,13 @@ public class ProductServlet extends HttpServlet {
 	
 	//处理method=get的请求
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String keyword = request.getParameter("keyword");
+		String keyword = request.getParameter("keyword");//要与前端input中的name一样
 		ProductService productService = new ProductService();
 		ArrayList<Product> products = productService.queryByName(keyword);
-		for(Product tmProduct :products) {
-			System.out.println(tmProduct);
-		}
+		System.out.println(products.size());
+		request.setAttribute("proList", products);
+		request.getSession().setAttribute("proList", products);
+		response.sendRedirect("/zy20180630/query.jsp");
 	}
 
 	//处理method=post的请求
