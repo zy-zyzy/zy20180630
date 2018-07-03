@@ -17,4 +17,9 @@ public class ProductService {
 		return productDao.queryByName(name);
 		
 	}
+	
+	public void delete(int id) {
+		productDao.delete(id);
+		
+	}
 }
