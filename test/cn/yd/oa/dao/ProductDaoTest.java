@@ -11,9 +11,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.yd.oa.model.Product;
+import cn.yd.oa.service.ProductService;
 
 public class ProductDaoTest {
-	private static  ProductDao productDao;
+	private static  ProductService productService;
 	private static ApplicationContext context;
 
 	@BeforeClass
@@ -21,13 +22,13 @@ public class ProductDaoTest {
 		System.out.println("此方法在测试方法之前执行，通常用来初始化测试对象");
 		//productDao = new ProductDao();	
 		context = new ClassPathXmlApplicationContext("spring-bean.xml");
-		productDao = context.getBean("productDao",ProductDao.class);
+		productService = context.getBean("ps",ProductService.class);
 		}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		System.out.println("此方法在测试方法之后执行，通常用来释放资源");
-		productDao = null;
+		productService = null;
 	}
 
 	@Test
@@ -38,7 +39,7 @@ public class ProductDaoTest {
 		product.setPrice(2800.00);
 		product.setRemark("华为P10");
 		product.setId(2);
-		productDao.update(product);
+		//productService.update(product);
 	}
 
 	@Test
@@ -46,7 +47,7 @@ public class ProductDaoTest {
 		//fail("Not yet implemented");
 		Product product = new Product();
 		product.setId(2);
-		productDao.delete(product.getId());
+		productService.delete(product.getId());
 	}
 
 	@Test
@@ -57,20 +58,20 @@ public class ProductDaoTest {
 		product.setPrice(2800.00);
 		product.setRemark("华为P10");
 		product.setId(2);
-		productDao.save(product);
+		productService.save(product);
 	}
 	
 	@Test
 	public void testGetById() {
 		//fail("Not yet implemented");
-		Product product = productDao.getById(3);
-		System.out.println(product.toString());
+		//Product product = productService.getById(3);
+		//System.out.println(product.toString());
 	}
 	
 	@Test
 	public void testQueryByName() {
 		//fail("Not yet implemented");
-		ArrayList<Product> product = productDao.queryByName("");
+		ArrayList<Product> product = productService.queryByName("");
 		for(Product product2 :product) {
 			System.out.println(product2.toString());
 		}
