@@ -27,6 +27,7 @@ public class ProductDao {
 	//
 	public ArrayList<Product> queryByName(String name) {
 		String sql="select * from product where name like ?";
+		System.out.println("dao....");
 		return (ArrayList<Product>) jdbcTemplate.query(sql, new Object[] {"%"+name+"%"}, new BeanPropertyRowMapper(Product.class));
 	}
 	

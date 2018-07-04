@@ -9,10 +9,13 @@
 
 	
 	<!-- 在项目中所有的请求都要从工程名往下走 -->
-	<form action="${pageContext.request.contextPath}/ProductServlet" method="get">
-	关键字：<input type = "text" name="keyword" value=${sessionScope.keyword} /> <br/>
+	<form action="${pageContext.request.contextPath}/product/query.mvc" method="get">
+	关键字：<input type = "text" name="keyword" value="${sessionScope.keyword}" /> <br/>
 	<input type="submit" value = "搜索"/>
+	<!-- 
 	<input type="hidden" name="type" value="query">
+	 -->
+	
 	</form>
 	<!--  
 	req:<%=request.getAttribute("proList") %>
@@ -36,7 +39,9 @@
 		<td>${product.remark}</td>
 		<td>${product.date}</td>
 		<!-- 所有的a标签都是get请求 -->
-		<td>更新|<a href="${pageContext.request.contextPath}/ProductServlet?id=${product.id}&type=delete">删除</a></td>
+		<td>
+		<a href="${pageContext.request.contextPath}/product/getbyid.mvc?id=${product.id}">更新</a>
+		|<a href="${pageContext.request.contextPath}/product/delete.mvc?id=${product.id}">删除</a></td>
 		</tr>
 		</c:forEach>
 	</table>

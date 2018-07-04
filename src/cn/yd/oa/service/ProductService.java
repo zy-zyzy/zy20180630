@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.ArrayList;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
 
 import cn.yd.oa.dao.ProductDao;
@@ -12,7 +14,6 @@ import cn.yd.oa.model.Product;
 //此类主要是用来实现业务逻辑的
 @Component(value="ps")
 public class ProductService {
-
 	ProductDao productDao = null;
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
@@ -30,6 +31,16 @@ public class ProductService {
 	
 	public void delete(int id) {
 		productDao.delete(id);
+		
+	}
+	
+	public Product getById(int id) {
+		return productDao.getById(id);
+		
+	}
+	
+	public void update(Product product) {
+		productDao.update(product);
 		
 	}
 }
