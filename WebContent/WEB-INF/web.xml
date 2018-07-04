@@ -2,6 +2,35 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>zy20180630</display-name>
   <welcome-file-list>
+  <!-- 定义缺省的欢迎页面 -->
+  <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 配置 MVC的前端控制器 -->
+  <servlet>
+  		<servlet-name>dispatcherServlet</servlet-name>
+  		<!-- 类全名比较长，因此一般都用一个逻辑名来取代，就是servlet-name来代替
+  		servlet-class中的类 -->
+  	  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  		<!-- 配置启动时要加载的mvc配置文件 -->
+  		<init-param>
+  			<param-name>contextConfigLocation</param-name>
+  			<param-value>classpath:mvc-bean.xml,classpath:spring-bean.xml</param-value>
+  		</init-param>
+  		
+  		<!-- 此servlet是在启动时加载的，还会加载spring-mvc的配置文件
+  		而且只加载一次，因为每次配置文件的加载都会导致bean的初始化 
+  		数值越小，优先级越高-->
+  		<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+  	<!-- 与上面的servlet-name一致 -->
+  	<servlet-name>dispatcherServlet</servlet-name>
+  	<!-- 定义要过来的请求规则，此处代表只要url地址后缀为*.mvc结尾则交给controller处理 -->
+  	<url-pattern>*.mvc</url-pattern>
+  </servlet-mapping>
+    <!--  
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -17,4 +46,5 @@
   <servlet-name>ProductServlet</servlet-name>
   <url-pattern>/ProductServlet</url-pattern>
   </servlet-mapping>
+   -->
 </web-app>

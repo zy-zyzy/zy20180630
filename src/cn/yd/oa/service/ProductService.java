@@ -4,10 +4,13 @@ import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
 import cn.yd.oa.dao.ProductDao;
 import cn.yd.oa.model.Product;
 
 //此类主要是用来实现业务逻辑的
+@Component(value="ps")
 public class ProductService {
 
 	ProductDao productDao = null;

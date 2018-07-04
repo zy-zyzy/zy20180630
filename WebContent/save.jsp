@@ -24,7 +24,7 @@
 	%>
 	<a href = "query.jsp">query.jsp</a>
 在项目中所有的请求都要从工程名往下走
-	<form action="${pageContext.request.contextPath}/ProductServlet" method="post">
+	<form action="${pageContext.request.contextPath}/product/save.mvc" method="post">
 	商品名：<input type = "text" name="name" /> <br/>
 	价格：<input type = "text" name="price" /> <br/>
 	备注：<input type = "text" name="remark" /> <br/>
