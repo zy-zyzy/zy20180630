@@ -11,6 +11,21 @@ http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 http://www.springframework.org/schema/tx 
 http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+	<bean id="pd" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="cn.yd.oa.dao.ProductDao" />
+		<property name="sqlSessionFactory" ref="ssf" />
+	</bean>
+<!-- 此工具类替换了MybatisUtils，主要用来加载mybatis的主配置文件，
+主文件中dataSource可以删除，因为由spring来管理datasource 
+在此增加datasource依赖，则可以删除jdbcteample-->
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis.cfg.xml"></property>
+		<property name="dataSource" ref="dataSource1"></property>
+	</bean>
+	
+
+	
+	
 	<!-- 1、配置声明式事务 ，缺省是自动事务-->
 	
 	<bean id="tm" 
@@ -45,13 +60,6 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
 	</bean>
 
-	<bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource1"></property>
-	</bean>
-
-	<bean id="pd" class="cn.yd.oa.dao.ProductDao">
-		<property name="jdbcTemplate" ref="jt"></property>
-	</bean>
 
 	<bean id="ps" class="cn.yd.oa.service.ProductService">
 		<property name="productDao" ref="pd"></property>

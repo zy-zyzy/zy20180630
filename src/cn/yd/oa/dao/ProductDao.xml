@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- 有效的xml文件必须有xsd/dtd声明,此配置文件是用来编写SQL语句的文件,需要添加mybatis.cfg.xml中 -->
+ <mapper namespace="cn.yd.oa.dao.ProductDao">
+ 	<insert id="save" parameterType="producct">
+ 	insert into product (name,price,remark) values (#{name},#{price},#{remark})
+ 	</insert>
+ 	<update id="update" parameterType="producct">
+ 	update product set name=#{name},price=#{price},remark=#{remark} where id=#{id}
+ 	</update>
+ 	<delete id="delete" parameterType="int">
+ 	delete from product where id=#{id}
+ 	</delete>
+	
+	<select id="getById" parameterType="int" resultType="producct">
+	select * from product where id=#{id}
+	</select> 	
+	
+	<select id="queryByName" parameterType="string" resultType="producct">
+	select * from product where name like #{name}
+	</select> 	
+ </mapper>

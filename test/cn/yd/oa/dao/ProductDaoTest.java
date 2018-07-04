@@ -58,7 +58,7 @@ public class ProductDaoTest {
 		product.setPrice(2800.00);
 		product.setRemark("»ªÎªP10");
 		product.setId(2);
-		productService.save(product);
+//		productService.save(product);
 	}
 	
 	@Test
